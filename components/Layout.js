@@ -25,6 +25,7 @@ export const Layout = (props) => {
     // </div>
     <>
       <HeadMatter />
+      <TopBar />
       <Menu />
       {children}
       <Footer />
