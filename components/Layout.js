@@ -1,6 +1,6 @@
 import { HeadMatter } from "./HeadMatter";
 
-export const Layout = (props) => {
+export const Layout = ({ children }) => {
   return (
     // <div
     //   style={{
