@@ -10,18 +10,18 @@ const isProduction = process.env.NODE_ENV === "production";
 // The main Sass method grabs all root Sass files,
 // processes them, then sends them to the output calculator
 const sass = () => {
-	return src("./src/scss/*.scss")
-		.pipe(sassProcessor().on("error", sassProcessor.logError))
-		.pipe(
-			cleanCSS(
-				isProduction
-					? {
-							level: 2,
-					  }
-					: {}
-			)
-		)
-		.pipe(dest("../static/css", { sourceMaps: !isProduction }));
+  return src("./src/scss/*.scss")
+    .pipe(sassProcessor().on("error", sassProcessor.logError))
+    .pipe(
+      cleanCSS(
+        isProduction
+          ? {
+              level: 2,
+            }
+          : {}
+      )
+    )
+    .pipe(dest("../public/css", { sourceMaps: !isProduction }));
 };
 
 module.exports = sass;
