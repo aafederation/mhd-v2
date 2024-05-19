@@ -1,4 +1,5 @@
 import { Layout } from "../components/Layout";
+import { MainBody } from "../components/MainBody";
 import { getSortedData } from "../lib/getData";
 
 // import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -77,24 +78,7 @@ export default function Home({ allMHDdata }) {
           {/* {{ partial "main-filter.html" . }} */}
         </div>
         <div className="main-body-col">
-          {/* {{ partial "main-body.html" . }} */}
-          <p>
-            data is:
-            <br />
-            <span>{allMHDdata[0].org}</span>
-            <br />
-            content is:
-            <br />
-            <span dangerouslySetInnerHTML={{ __html: allMHDdata[0].content }} />
-          </p>
-          {/* {allMHDdata.map((provider) => (
-            <h4>
-              {provider.id}
-              {provider.name}
-            </h4>
-            // <Component member={member} key={member.id} />
-            // <h4 key={provider.id}>{provider.id}</h4>
-          ))} */}
+          <MainBody allMHDdata={allMHDdata} />
         </div>
       </div>
       <div className="[  index-blurb flow ] [ pad-top-900 pad-right-500 pad-bottom-900 pad-left-500 bg-canvas ]">
