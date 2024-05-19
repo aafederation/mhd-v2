@@ -1,17 +1,44 @@
-import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Layout } from "../components/Layout";
-import { tinaField, useTina } from "tinacms/dist/react";
-import { client } from "../tina/__generated__/client";
+import { getSortedData } from "../lib/getData";
 
-export default function Home(props) {
+// import { TinaMarkdown } from "tinacms/dist/rich-text";
+// import { tinaField, useTina } from "tinacms/dist/react";
+// import { client } from "../tina/__generated__/client";
+
+export async function getStaticProps() {
+  const allMHDdata = getSortedData("MHD");
+
+  return {
+    props: {
+      allMHDdata,
+    },
+  };
+}
+
+// export const getStaticProps = async () => {
+//   const { data, query, variables } = await client.queries.page({
+//     relativePath: "home.mdx",
+//   });
+
+//   return {
+//     props: {
+//       data,
+//       query,
+//       variables,
+//       //myOtherProp: 'some-other-data',
+//     },
+//   };
+// };
+
+export default function Home({ allMHDdata }) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
-  const { data } = useTina({
-    query: props.query,
-    variables: props.variables,
-    data: props.data,
-  });
+  // const { data } = useTina({
+  //   query: props.query,
+  //   variables: props.variables,
+  //   data: props.data,
+  // });
 
-  const content = data.page.body;
+  // const content = data.page.body;
   return (
     <Layout>
       {/* <div data-tina-field={tinaField(data.page, "body")}>
@@ -51,6 +78,14 @@ export default function Home(props) {
         </div>
         <div className="main-body-col">
           {/* {{ partial "main-body.html" . }} */}
+          {allMHDdata.map((provider) => (
+            <h4>
+              {provider.id}
+              {provider.name}
+            </h4>
+            // <Component member={member} key={member.id} />
+            // <h4 key={provider.id}>{provider.id}</h4>
+          ))}
         </div>
       </div>
       <div className="[  index-blurb flow ] [ pad-top-900 pad-right-500 pad-bottom-900 pad-left-500 bg-canvas ]">
@@ -91,18 +126,3 @@ export default function Home(props) {
     </Layout>
   );
 }
-
-export const getStaticProps = async () => {
-  const { data, query, variables } = await client.queries.page({
-    relativePath: "home.mdx",
-  });
-
-  return {
-    props: {
-      data,
-      query,
-      variables,
-      //myOtherProp: 'some-other-data',
-    },
-  };
-};
