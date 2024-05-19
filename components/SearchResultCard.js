@@ -1,4 +1,4 @@
-export const SearchResultCard = ({ mentalHealthProvider }) => {
+export const SearchResultCard = ({ mentalHealthProvider, location }) => {
   let bgType = "bg-organization";
   let colorTypeInvert = "color-organization-invert";
   let textContent = "Organization";
@@ -43,33 +43,62 @@ export const SearchResultCard = ({ mentalHealthProvider }) => {
           data-layout="reversed"
         >
           <div className="flow" style={{ "--flow-space": "0.5rem" }}>
-            <div className="display-flex" id="address-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#xe01d;
-              </span>
-              <span className="address"></span>
-            </div>
-            <div className="display-flex" id="phone-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#xe090;
-              </span>
-              <span className="phone"></span>
-            </div>
-            <div className="display-flex" id="email-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#xe010;
-              </span>
-              <span className="email"></span>
-            </div>
-            <div className="display-flex" id="website-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#xe0e3;
-              </span>
-              <span
-                className="website link-pointer handle-long-url"
-                data-variant="invert"
-              ></span>
-            </div>
+            {location.address && (
+              <div className="display-flex" id="address-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#xe01d;
+                </span>
+                <span className="address">{location.address}</span>
+              </div>
+            )}
+            {location.phone_number && (
+              <div className="display-flex" id="phone-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#xe090;
+                </span>
+                <span className="phone">{location.phone_number}</span>
+              </div>
+            )}
+            {mentalHealthProvider.email && (
+              <div className="display-flex" id="email-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#xe010;
+                </span>
+                <span className="email">
+                  <a
+                    href={`mailto: ${mentalHealthProvider.email}`}
+                    className="link-pointer"
+                    data-variant="invert"
+                    target="_blank"
+                  >
+                    {mentalHealthProvider.email}
+                  </a>
+                </span>
+              </div>
+            )}
+            {mentalHealthProvider.website && (
+              <div className="display-flex" id="website-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#xe0e3;
+                </span>
+                <span className="website">
+                  <a
+                    className="link-pointer handle-long-url"
+                    data-variant="invert"
+                    href={
+                      (!mentalHealthProvider.website
+                        .toLowerCase()
+                        .startsWith("http")
+                        ? "//"
+                        : "") + `${mentalHealthProvider.website}`
+                    }
+                    target="_blank"
+                  >
+                    {mentalHealthProvider.website}
+                  </a>
+                </span>
+              </div>
+            )}
             <div className="display-flex" id="clinical-services-row">
               <span className="[ font_icons color-icon ] [ position-icon ]">
                 &#x4e;

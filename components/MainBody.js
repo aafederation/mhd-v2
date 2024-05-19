@@ -22,10 +22,17 @@ export const MainBody = ({ allMHDdata }) => {
         <i>Search results displayed in alphabetical order</i>
       </div>
       <div className="mhd-tiles" id="mhd-tiles-search-result">
-        {allMHDdata.slice(0, 3).map((provider) => (
-          //TODO: multiple cards for multiple addresses
-          <SearchResultCard mentalHealthProvider={provider} key={provider.id} />
-        ))}
+        {allMHDdata
+          .slice(0, 4)
+          .map((provider) =>
+            provider.locations.map((location) => (
+              <SearchResultCard
+                mentalHealthProvider={provider}
+                location={location}
+                key={provider.id}
+              />
+            ))
+          )}
       </div>
       <div className="center-content gap-bottom-major">
         <button
