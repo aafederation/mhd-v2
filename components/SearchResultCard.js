@@ -99,42 +99,60 @@ export const SearchResultCard = ({ mentalHealthProvider, location }) => {
                 </span>
               </div>
             )}
-            <div className="display-flex" id="clinical-services-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#x4e;
-              </span>
-              <div>
-                {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.services" }}</span>: */}
-                <span className="services"></span>
+            {location.services.length > 0 && (
+              <div className="display-flex" id="clinical-services-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#x4e;
+                </span>
+                <div>
+                  {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.services" }}</span>: */}
+                  <span className="weight-bold">Clinical services: </span>
+                  <span className="services">
+                    {location.services.join(", ")}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="display-flex" id="non-clinical-services-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#x4e;
-              </span>
-              <div>
-                {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.non_clinical_services" }}</span>: */}
-                <span className="non-clinical-services"></span>
+            )}
+            {location.non_clinical_services.length > 0 && (
+              <div className="display-flex" id="non-clinical-services-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#x4e;
+                </span>
+                <div>
+                  {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.non_clinical_services" }}</span>: */}
+                  <span className="weight-bold">Non-clinical services: </span>
+                  <span className="non-clinical-services">
+                    {location.non_clinical_services.join(", ")}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="display-flex" id="trainings-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#x4e;
-              </span>
-              <div>
-                {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.trainings" }}</span>: */}
-                <span className="trainings"></span>
+            )}
+            {location.trainings && (
+              <div className="display-flex" id="trainings-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#x4e;
+                </span>
+                <div>
+                  {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.trainings" }}</span>: */}
+                  <span className="weight-bold">Trainings: </span>
+                  <span className="trainings">{location.trainings}</span>
+                </div>
               </div>
-            </div>
-            <div className="display-flex" id="credentials-row">
-              <span className="[ font_icons color-icon ] [ position-icon ]">
-                &#x4e;
-              </span>
-              <div>
-                {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.credentials" }}</span>: */}
-                <span className="credentials"></span>
+            )}
+            {location.credentials.length > 0 && (
+              <div className="display-flex" id="credentials-row">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#x4e;
+                </span>
+                <div>
+                  {/* <span className="weight-bold">{{ partial "functions/forestryLabel" "locations.credentials" }}</span>: */}
+                  <span className="weight-bold">Credentials: </span>
+                  <span className="credentials">
+                    {location.credentials.join(", ")}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div>
             <div className="link-pointer directions gap-top-500 lg:gap-top-0">
