@@ -23,12 +23,14 @@ export const MainBody = ({ allMHDdata }) => {
       </div>
       <div className="mhd-tiles" id="mhd-tiles-search-result">
         {allMHDdata.slice(0, 3).map((provider) => (
+          //TODO: multiple cards for multiple addresses
           <SearchResultCard mentalHealthProvider={provider} key={provider.id} />
         ))}
       </div>
       <div className="center-content gap-bottom-major">
         <button
-          className="button hide-show-more-button"
+          //TODO: class:hide-show-more-button, only show when more available
+          className="button"
           id="show-more-button"
           onclick="htf.showMoreResults()"
         >
