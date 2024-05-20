@@ -29,7 +29,7 @@ export const MainBody = ({ allMHDdata }) => {
               <SearchResultCard
                 mentalHealthProvider={provider}
                 location={location}
-                key={provider.id}
+                key={location.address}
               />
             ))
           )}
