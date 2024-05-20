@@ -1,4 +1,5 @@
 import { Layout } from "../components/Layout";
+import { SingleProvider } from "../components/SingleProvider";
 import { getAllProviderIds, getSingleProviderFromSlug } from "../lib/getData";
 
 const memberType = "MHD";
@@ -6,7 +7,7 @@ const memberType = "MHD";
 export default function MHDprovider({ mentalHealthProvider }) {
   return (
     <Layout>
-      <h1>The org is {mentalHealthProvider.org}</h1>
+      <SingleProvider mentalHealthProvider={mentalHealthProvider} />
     </Layout>
   );
 }
