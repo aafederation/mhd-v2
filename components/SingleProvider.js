@@ -1,6 +1,6 @@
 import { SingleProviderLocation } from "./SingleProviderLocation";
 
-export const SingleProvider = ({ mentalHealthProvider }) => {
+export const SingleProvider = ({ provider }) => {
   return (
     <div
       className="[ flow ] [ bg-light pad-top-500 pad-bottom-500 ]"
@@ -8,10 +8,10 @@ export const SingleProvider = ({ mentalHealthProvider }) => {
     >
       {/* {{ $org := .Params }}
 		{{ $content := .Content }} */}
-      <h4>{mentalHealthProvider.org}</h4>
-      {mentalHealthProvider.locations.map((location) => (
+      <h4>{provider.org}</h4>
+      {provider.locations.map((location) => (
         <SingleProviderLocation
-          mentalHealthProvider={mentalHealthProvider}
+          provider={provider}
           location={location}
           key={location.address}
         />

@@ -7,7 +7,7 @@ const memberType = "MHD";
 export default function MHDprovider({ mentalHealthProvider }) {
   return (
     <Layout>
-      <SingleProvider mentalHealthProvider={mentalHealthProvider} />
+      <SingleProvider provider={mentalHealthProvider} />
     </Layout>
   );
 }
