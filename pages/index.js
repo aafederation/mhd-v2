@@ -2,10 +2,6 @@ import { Layout } from "../components/Layout";
 import { MainBody } from "../components/MainBody";
 import { getSortedData } from "../lib/getData";
 
-// import { TinaMarkdown } from "tinacms/dist/rich-text";
-// import { tinaField, useTina } from "tinacms/dist/react";
-// import { client } from "../tina/__generated__/client";
-
 export async function getStaticProps() {
   const allMHDdata = getSortedData("MHD");
 
@@ -16,35 +12,9 @@ export async function getStaticProps() {
   };
 }
 
-// export const getStaticProps = async () => {
-//   const { data, query, variables } = await client.queries.page({
-//     relativePath: "home.mdx",
-//   });
-
-//   return {
-//     props: {
-//       data,
-//       query,
-//       variables,
-//       //myOtherProp: 'some-other-data',
-//     },
-//   };
-// };
-
 export default function Home({ allMHDdata }) {
-  // data passes though in production mode and data is updated to the sidebar data in edit-mode
-  // const { data } = useTina({
-  //   query: props.query,
-  //   variables: props.variables,
-  //   data: props.data,
-  // });
-
-  // const content = data.page.body;
   return (
     <Layout>
-      {/* <div data-tina-field={tinaField(data.page, "body")}>
-        <TinaMarkdown content={content} />
-      </div> */}
       <div className="[  index-blurb flow ] [ gap-top-300 pad-top-900 pad-right-500 pad-bottom-900 pad-left-500 bg-canvas ]">
         <p className="text-500">
           All Asian Americans deserve access to culturally competent mental
