@@ -36,7 +36,15 @@ export const SearchResultCard = ({ mentalHealthProvider, location }) => {
             <h3 className="link-pointer-basic">{mentalHealthProvider.org}</h3>
             <h5 className="b-legal provider-type">{textContent}</h5>
           </div>
-          <h4 className="link-pointer-basic">more info ›</h4>
+          <h4>
+            <a
+              href={`/${mentalHealthProvider.id}`}
+              className="link-pointer-basic"
+              target="_blank"
+            >
+              more info ›
+            </a>
+          </h4>
         </div>
         <div
           className="[ card-flex ] [ pad-top-500 pad-bottom-500 pad-left-600 pad-right-600 ]"
