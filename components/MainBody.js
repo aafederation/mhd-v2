@@ -39,7 +39,7 @@ export const MainBody = ({ allMHDdata }) => {
           //TODO: class:hide-show-more-button, only show when more available
           className="button"
           id="show-more-button"
-          onclick="htf.showMoreResults()"
+          // onclick="htf.showMoreResults()"
         >
           Show more results
         </button>

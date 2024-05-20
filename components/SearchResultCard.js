@@ -16,17 +16,17 @@ export const SearchResultCard = ({ mentalHealthProvider, location }) => {
     <>
       <section
         className="[ radius ] tf-item tf-filter-item show-item" //tf-filter-item: display based on search
-        data-tag=""
-        data-service=""
-        data-nonClinicalService=""
-        data-staffGender=""
-        data-ageGroup=""
-        data-specialty=""
-        data-type=""
-        data-borough=""
-        data-language=""
-        data-payment=""
-        data-ADAcompliance=""
+        // data-tag=""
+        // data-service=""
+        // data-nonClinicalService=""
+        // data-staffGender=""
+        // data-ageGroup=""
+        // data-specialty=""
+        // data-type=""
+        // data-borough=""
+        // data-language=""
+        // data-payment=""
+        // data-ADAcompliance=""
       >
         <div
           className={`text-400 pad-top-500 pad-bottom-500 pad-left-500 pad-right-500 split-pair ${bgType} ${colorTypeInvert}`}
