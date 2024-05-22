@@ -3,6 +3,11 @@ export const SingleLocationBanner = ({ provider, location }) => {
   let colorTypeInvert = "color-organization-invert";
   let textContent = "Organization";
   let individual = false;
+  let mapSrc;
+  let mappingAddress = "";
+  let showPlace = true;
+  let latLng = location.latLng;
+  let borough = location.boroughs[0];
 
   if (provider.tags.some((x) => x.toLowerCase().includes("individual"))) {
     bgType = "bg-individual";
@@ -11,30 +16,24 @@ export const SingleLocationBanner = ({ provider, location }) => {
     individual = true;
   }
 
-  // {{ $borough := index .location.boroughs 0 }}
-  // {{ $showPlace := true }}
-  // {{ $individual := true }}
-  // {{ $latLng := "" }}
-  // {{ $mappingAddress := "" }}
-  // {{ $bestWayToContact := .org.best_way_to_contact }}
+  if (latLng) {
+    if (location.boroughs.length === 0) {
+      borough = "New York City";
+    }
+    if (individual) {
+      mappingAddress = location.address + "," + borough + "+NY";
+    } else {
+      mappingAddress =
+        provider.org + "," + location.address + "," + borough + "+NY";
+    }
 
-  // {{ if ne .location.latLng "" }}
-  // 	{{ $latLng = .location.latLng }}
-  // 	{{ if or (in (slice "Citywide" "") $borough) (eq $borough nil) }}
-  // 		{{ $borough = "New York City" }}
-  // 	{{ end }}
-  // 	{{ if or (in .org.tags "individual") (in .org.tags "Individual") (in .org.tags "Individual Provider")}}
-  // 		{{ $mappingAddress = print .location.address "," $borough "+NY" }}
-  // 	{{ else }}
-  // 		{{ $mappingAddress = print .org.org "," .location.address "," $borough "+NY" }}
-  // 		{{ $individual = false }}
-  // 	{{ end }}
-  // 	{{ $mappingAddress = replace $mappingAddress "\n" "+" }}
-  // 	{{ $mappingAddress = replace $mappingAddress " " "+" }}
-  // {{ else }}
-  // 	{{ $latLng = site.Params.defaultLatLng }}
-  // 	{{ $showPlace = false }}
-  // {{ end }}
+    mappingAddress = mappingAddress.replace(/[\s+_]/g, "+").replace(/\n/g, "+");
+    mapSrc = `https://www.google.com/maps/embed/v1/place?q=${mappingAddress}&center=${latLng}&key=AIzaSyBq3mhYmZFPmQqp0q0koUSMbTtA49zjwQY&zoom=12&`;
+  } else {
+    latLng = "40.704938, -74.006006";
+    mapSrc = `https://www.google.com/maps/embed/v1/view?center=${latLng}&key=AIzaSyBq3mhYmZFPmQqp0q0koUSMbTtA49zjwQY&zoom=11&`;
+    showPlace = false;
+  }
 
   return (
     <>
@@ -65,56 +64,50 @@ export const SingleLocationBanner = ({ provider, location }) => {
           )}
         </div>
       </div>
+      <div className="[ wrapper ] [ bg-light pad-top-500 pad-bottom-500 ]">
+        <div className="tiles" data-variant="two-per-row">
+          <div className="[ bg-white box-shadow-glow ]">
+            {provider.image && (
+              <div className="[ ]">
+                <h4 className="underline pad-left-300 pad-right-300 pad-top-300 pad-bottom-300">
+                  {provider.org}
+                </h4>
+                <img src={provider.image} className="[ bg-white ]" alt="" />
+              </div>
+            )}
+            <div className="[ ]">
+              <h4 className="underline pad-left-300 pad-right-300 pad-top-300 pad-bottom-300">
+                Location
+              </h4>
+              <iframe
+                frameborder="0"
+                width="100%"
+                height="300px"
+                style={{ border: "0" }}
+                src={mapSrc}
+                allowfullscreen
+              ></iframe>
+              {showPlace && (
+                <div className="pad-left-300 pad-right-300 pad-top-300 pad-bottom-300">
+                  <a
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${mappingAddress}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-pointer color-white bg-primary no-decoration"
+                  >
+                    <span className="font_icons">&#xe03c;</span>
+                    <span className="weight-bold"> Get directions</span>
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
 
-// <div className="[ wrapper ] [ bg-light pad-top-500 pad-bottom-500 ]">
-// 	<div className="tiles" data-variant="two-per-row">
-// 		<div className="[ bg-white box-shadow-glow ]">
-// 			{{ if ne .org.image "" }}
-// 				<div className="[ ]">
-// 					<h4
-// 						className="underline pad-left-300 pad-right-300 pad-top-300 pad-bottom-300"
-// 					>
-// 						{{ .org.org }}
-// 					</h4>
-// 					<img src="{{ .org.image }}" className="[ bg-white ]" alt="">
-// 				</div>
-// 			{{ end }}
-// 			<div className="[ ]">
-// 				<h4
-// 					className="underline pad-left-300 pad-right-300 pad-top-300 pad-bottom-300"
-// 				>
-// 					Location
-// 				</h4>
-// 				<iframe
-// 					frameborder="0"
-// 					width="100%"
-// 					height="300px"
-// 					style="border:0"
-// 					{{ if eq $showPlace true }}
-// 						src="https://www.google.com/maps/embed/v1/place?q={{ $mappingAddress }}&center={{ $latLng }}&key=AIzaSyBq3mhYmZFPmQqp0q0koUSMbTtA49zjwQY&zoom=12&"
-// 					{{ else }}
-// 						src="https://www.google.com/maps/embed/v1/view?center={{ $latLng }}&key=AIzaSyBq3mhYmZFPmQqp0q0koUSMbTtA49zjwQY&zoom=11&"
-// 					{{ end }}
-// 					allowfullscreen
-// 				></iframe>
-// 				{{ if eq $showPlace true }}
-// 					<div className="pad-left-300 pad-right-300 pad-top-300 pad-bottom-300">
-// 						<a
-// 							href="https://www.google.com/maps/dir/?api=1&destination={{ $mappingAddress }}"
-// 							target="_blank"
-// 							rel="noopener noreferrer"
-// 							className="link-pointer color-white bg-primary no-decoration"
-// 						>
-// 							<span className="font_icons">&#xe03c;</span>
-// 							<span className="weight-bold">Get directions</span>
-// 						</a>
-// 					</div>
-// 				{{ end }}
-// 			</div>
-// 		</div>
 // 		<div className="[ bg-white box-shadow-glow ]">
 // 			<h4
 // 				className="underline pad-left-300 pad-right-300 pad-top-300 pad-bottom-300"
@@ -138,7 +131,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 						</span>
 // 					</div>
 // 				{{ end }}
-// 				{{ with .org.email }}
+// 				{{ with provider.email }}
 // 					<div className="display-flex flex-wrap-wrap">
 // 						<span className="[ font_icons color-icon ] [ position-icon ]"
 // 							>&#xe010;</span
@@ -156,7 +149,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 						{{ end }}
 // 					</div>
 // 				{{ end }}
-// 				{{ with .org.website }}
+// 				{{ with provider.website }}
 // 					<div className="display-flex">
 // 						<span className="[ font_icons color-icon ] [ position-icon ]"
 // 							>&#xe0e3;</span
@@ -178,7 +171,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 						>&#xe0a0;</span
 // 					>
 // 					<span>
-// 						{{ with .org.facebook }}
+// 						{{ with provider.facebook }}
 // 							{{ $handle := trim . "@" }}
 // 							<span className="[ font_icons color-icon ] [ position-icon ]">
 // 								<a href="https://facebook.com/{{ $handle }}" target="_blank" rel="noopener noreferrer">
@@ -186,7 +179,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 								</a>
 // 							</span>
 // 						{{ end }}
-// 						{{ with .org.twitter }}
+// 						{{ with provider.twitter }}
 // 							{{ $handle := trim . "@" }}
 // 							<span className="[ font_icons color-icon ] [ position-icon ]">
 // 								<a href="https://twitter.com/{{ $handle }}" target="_blank" rel="noopener noreferrer">
@@ -194,7 +187,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 								</a>
 // 							</span>
 // 						{{ end }}
-// 						{{ with .org.instagram }}
+// 						{{ with provider.instagram }}
 // 							{{ $handle := trim . "@" }}
 // 							<span className="[ font_icons color-icon ] [ position-icon ]">
 // 								<a href="https://instagram.com/{{ $handle }}" target="_blank" rel="noopener noreferrer">
@@ -202,7 +195,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 								</a>
 // 							</span>
 // 						{{ end }}
-// 						{{ with .org.linkedin }}
+// 						{{ with provider.linkedin }}
 // 							{{ $handle := trim . " " }}
 // 							<span className="[ font_icons color-icon ] [ position-icon ]">
 // 								<a href="{{ $handle }}" target="_blank" rel="noopener noreferrer">
@@ -210,7 +203,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 								</a>
 // 							</span>
 // 						{{ end }}
-// 						{{ with .org.youtube }}
+// 						{{ with provider.youtube }}
 // 							{{ $handle := trim . " " }}
 // 							<span className="[ font_icons color-icon ] [ position-icon ]">
 // 								<a href="{{ $handle }}" target="_blank" rel="noopener noreferrer">
@@ -218,7 +211,7 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 								</a>
 // 							</span>
 // 						{{ end }}
-// 						{{ with .org.medium }}
+// 						{{ with provider.medium }}
 // 							{{ $handle := trim . "@" }}
 // 							<span className="[ color-icon ] [ position-icon ]">
 // 								<a href="https://{{ $handle }}.medium.com" target="_blank" rel="noopener noreferrer" className="svg-color">
@@ -281,5 +274,3 @@ export const SingleLocationBanner = ({ provider, location }) => {
 // 				{{ end }}
 // 			</div>
 // 		</div>
-// 	</div>
-// </div>
