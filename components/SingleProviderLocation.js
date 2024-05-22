@@ -61,19 +61,19 @@ export const SingleProviderLocation = ({ provider, location }) => {
           )}
           {provider.payment_types_non_clinical.length > 0 && (
             <SingleServiceList
-              title=""
+              title="PAYMENT TYPES (NON-CLINICAL)"
               items={provider.payment_types_non_clinical}
             />
           )}
           {provider.payment_info_non_clinical && (
             <SingleServiceList
-              title=""
+              title="PAYMENT INFO (NON-CLINICAL)"
               items={provider.payment_info_non_clinical}
             />
           )}
           {provider.sliding_scale_non_clinical && (
             <SingleServiceList
-              title=""
+              title="SLIDING SCALE (NON-CLINICAL)"
               items={provider.sliding_scale_non_clinical}
             />
           )}
@@ -101,7 +101,10 @@ export const SingleProviderLocation = ({ provider, location }) => {
             />
           )}
           {provider.client_requirements && (
-            <SingleServiceList title="" items={provider.client_requirements} />
+            <SingleServiceList
+              title="CLIENT REQUIREMENTS"
+              items={provider.client_requirements}
+            />
           )}
           {location.hours_of_operation.length > 0 && (
             <SingleServiceList
