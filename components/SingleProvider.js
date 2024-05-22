@@ -8,7 +8,6 @@ export const SingleProvider = ({ provider }) => {
     >
       {/* {{ $org := .Params }}
 		{{ $content := .Content }} */}
-      <h4>{provider.org}</h4>
       {provider.locations.map((location) => (
         <SingleProviderLocation
           provider={provider}
