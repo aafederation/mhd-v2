@@ -252,57 +252,58 @@ export const SingleLocationBanner = ({ provider, location }) => {
                 </span>
               </div>
 
-              {/* {{ with .location.hours_of_operation }}
-					<div className="display-flex">
-						<span
-							className="[ font_icons color-icon ] [ position-icon ] icon_clock"
-							>&#xe06b;</span
-						>
-						<div className="no-bullets">
-							{{ range . }}
-								{{ range $key, $value := . }}
-									<li>{{ $value }}</li>
-								{{ end }}
-							{{ end }}
-						</div>
-					</div>
-				{{ end }}
-				{{ with .location.services }}
+              {location.hours_of_operation.length > 0 && (
+                <div className="display-flex">
+                  <span className="[ font_icons color-icon ] [ position-icon ] icon_clock">
+                    &#xe06b;
+                  </span>
+                  <div className="no-bullets">
+                    {location.hours_of_operation.map((x) => (
+                      <li>{x.day_hours}</li>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {/* {location.services.length > 0 && (
+
 					<div className="display-flex">
 						<span className="[ font_icons color-icon ] [ position-icon ]"
 							>&#x4e;</span
 						>
 						<div>
-							<span className="weight-bold">{{ partial "functions/forestryLabel" "locations.services" }}: </span>
+							<span className="weight-bold">Clinical services: </span>
 							<span>
-								{{ delimit . ", " }}
+								{location.services.join()}
 							</span>
 						</div>
 					</div>
-				{{ end }}
-				{{ with .location.non_clinical_services }}
+				
+                  )
+				{location.non_clinical_services.length > 0 && (
+
 					<div className="display-flex">
 						<span className="[ font_icons color-icon ] [ position-icon ]"
 							>&#x4e;</span
 						>
 						<div>
-							<span className="weight-bold">{{ partial "functions/forestryLabel" "locations.non_clinical_services" }}: </span>
+							<span className="weight-bold">Non-clinical services: </span>
 							<span>
-								{{ delimit . ", " }}
+								{location.non_clinical_services.join()}
 							</span>
 						</div>
 					</div>
-				{{ end }}
-				{{ with .content }}
+        )
+				{provider.content && (
+
 					<div className="display-flex">
 						<span className="[ font_icons color-icon ] [ position-icon ]"
 							>&nbsp;&nbsp;&nbsp;&nbsp;</span
 						>
 						<div className="provider-bio">
-							{{ . }}
+							{provider.content}
 						</div>
 					</div>
-				{{ end }} */}
+        ) */}
             </div>
           </div>
         </div>
