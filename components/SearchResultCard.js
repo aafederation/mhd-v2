@@ -4,6 +4,7 @@ export const SearchResultCard = ({ mentalHealthProvider, location }) => {
   let textContent = "Organization";
 
   if (
+    mentalHealthProvider.tags &&
     mentalHealthProvider.tags.some((x) =>
       x.toLowerCase().includes("individual")
     )
