@@ -264,46 +264,39 @@ export const SingleLocationBanner = ({ provider, location }) => {
                   </div>
                 </div>
               )}
-              {/* {location.services.length > 0 && (
 
-					<div className="display-flex">
-						<span className="[ font_icons color-icon ] [ position-icon ]"
-							>&#x4e;</span
-						>
-						<div>
-							<span className="weight-bold">Clinical services: </span>
-							<span>
-								{location.services.join()}
-							</span>
-						</div>
-					</div>
-				
-                  )
-				{location.non_clinical_services.length > 0 && (
+              {location.services.length > 0 && (
+                <div className="display-flex">
+                  <span className="[ font_icons color-icon ] [ position-icon ]">
+                    &#x4e;
+                  </span>
+                  <div>
+                    <span className="weight-bold">Clinical services: </span>
+                    <span>{location.services.join()}</span>
+                  </div>
+                </div>
+              )}
 
-					<div className="display-flex">
-						<span className="[ font_icons color-icon ] [ position-icon ]"
-							>&#x4e;</span
-						>
-						<div>
-							<span className="weight-bold">Non-clinical services: </span>
-							<span>
-								{location.non_clinical_services.join()}
-							</span>
-						</div>
-					</div>
-        )
-				{provider.content && (
-
-					<div className="display-flex">
-						<span className="[ font_icons color-icon ] [ position-icon ]"
-							>&nbsp;&nbsp;&nbsp;&nbsp;</span
-						>
-						<div className="provider-bio">
-							{provider.content}
-						</div>
-					</div>
-        ) */}
+              {location.non_clinical_services.length > 0 && (
+                <div className="display-flex">
+                  <span className="[ font_icons color-icon ] [ position-icon ]">
+                    &#x4e;
+                  </span>
+                  <div>
+                    <span className="weight-bold">Non-clinical services: </span>
+                    <span>{location.non_clinical_services.join()}</span>
+                  </div>
+                </div>
+              )}
+              {provider.content && (
+                <div className="display-flex">
+                  <span className="[ font_icons color-icon ] [ position-icon ]">
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                  </span>
+                  {/* TODO: content is not breaking and characters are not getting escaped */}
+                  <div className="provider-bio">{provider.content}</div>
+                </div>
+              )}
             </div>
           </div>
         </div>
