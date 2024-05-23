@@ -1,7 +1,6 @@
 export const SingleLocationBanner = ({ provider, location }) => {
   let bgType = "bg-organization";
   let colorTypeInvert = "color-organization-invert";
-  let textContent = "Organization";
   let individual = false;
   let mapSrc;
   let mappingAddress = "";
@@ -12,7 +11,6 @@ export const SingleLocationBanner = ({ provider, location }) => {
   if (provider.tags.some((x) => x.toLowerCase().includes("individual"))) {
     bgType = "bg-individual";
     colorTypeInvert = "color-individual-invert";
-    textContent = "Individual Provider";
     individual = true;
   }
 
@@ -124,97 +122,111 @@ export const SingleLocationBanner = ({ provider, location }) => {
                   </span>
                 </div>
               )}
-              {/* {{ with provider.email }}
-					<div className="display-flex flex-wrap-wrap">
-						<span className="[ font_icons color-icon ] [ position-icon ]"
-							>&#xe010;</span
-						>
-						<a
-							href="mailto: {{ . }}"
-							className="link-pointer"
-							data-variant="invert"
-							target="_blank"
-						>
-							{{ . }}
-						</a>
-						{{ if in $bestWayToContact "Email"}}
-							<h5 className="inline-display" data-variant="link">(best way to contact)</h5>
-						{{ end }}
-					</div>
-				{{ end }}
-				{{ with provider.website }}
-					<div className="display-flex">
-						<span className="[ font_icons color-icon ] [ position-icon ]"
-							>&#xe0e3;</span
-						>
-						<a
-							href="{{ if not (hasPrefix (lower .) `http`) }}//{{ . }}{{ else }}{{ . }}{{ end }}"
-							className="link-pointer handle-long-url"
-							data-variant="invert"
-							target="_blank"
-							>{{ . }}
-						</a>
-						{{ if in $bestWayToContact "Website"}}
-							<h5 className="inline-display" data-variant="link">(best way to contact)</h5>
-						{{ end }}
-					</div>
-				{{ end }}
-				<div className="display-flex flex-wrap-wrap">
-					<span className="[ font_icons color-icon ] [ position-icon ]"
-						>&#xe0a0;</span
-					>
-					<span>
-						{{ with provider.facebook }}
+
+              {provider.email && (
+                <div className="display-flex flex-wrap-wrap">
+                  <span className="[ font_icons color-icon ] [ position-icon ]">
+                    &#xe010;
+                  </span>
+                  <a
+                    href={`mailto:${provider.email}`}
+                    className="link-pointer"
+                    data-variant="invert"
+                    target="_blank"
+                  >
+                    {provider.email}
+                  </a>
+                  {provider.best_way_to_contact.includes("Email") && (
+                    <h5 className="inline-display" data-variant="link">
+                      (best way to contact)
+                    </h5>
+                  )}
+                </div>
+              )}
+
+              {provider.website && (
+                <div className="display-flex">
+                  <span className="[ font_icons color-icon ] [ position-icon ]">
+                    &#xe0e3;
+                  </span>
+                  <a
+                    //TODO: href="{{ if not (hasPrefix (lower .) `http`) }}//{{ . }}{{ else }}{{ . }}{{ end }}"
+                    className="link-pointer handle-long-url"
+                    data-variant="invert"
+                    target="_blank"
+                  >
+                    {provider.website}
+                  </a>
+                  {provider.best_way_to_contact.includes("Website") && (
+                    <h5 className="inline-display" data-variant="link">
+                      (best way to contact)
+                    </h5>
+                  )}
+                </div>
+              )}
+              <div className="display-flex flex-wrap-wrap">
+                <span className="[ font_icons color-icon ] [ position-icon ]">
+                  &#xe0a0;
+                </span>
+                {/* <span>
+						{provider.facebook && (
+
 							{{ $handle := trim . "@" }}
 							<span className="[ font_icons color-icon ] [ position-icon ]">
 								<a href="https://facebook.com/{{ $handle }}" target="_blank" rel="noopener noreferrer">
 									&#xe0aa;
 								</a>
 							</span>
-						{{ end }}
-						{{ with provider.twitter }}
+            )}
+						{provider.twitter && (
+
 							{{ $handle := trim . "@" }}
 							<span className="[ font_icons color-icon ] [ position-icon ]">
 								<a href="https://twitter.com/{{ $handle }}" target="_blank" rel="noopener noreferrer">
 									&#xe0ab;
 								</a>
 							</span>
-						{{ end }}
-						{{ with provider.instagram }}
+            )}
+						{provider.instagram && (
+
 							{{ $handle := trim . "@" }}
 							<span className="[ font_icons color-icon ] [ position-icon ]">
 								<a href="https://instagram.com/{{ $handle }}" target="_blank" rel="noopener noreferrer">
 									&#xe0b1;
 								</a>
 							</span>
-						{{ end }}
-						{{ with provider.linkedin }}
+            )}
+						{provider.linkedin && (
+
 							{{ $handle := trim . " " }}
 							<span className="[ font_icons color-icon ] [ position-icon ]">
 								<a href="{{ $handle }}" target="_blank" rel="noopener noreferrer">
 									&#xe0b4;
 								</a>
 							</span>
-						{{ end }}
-						{{ with provider.youtube }}
+            )}
+						{ provider.youtube && (
+
 							{{ $handle := trim . " " }}
 							<span className="[ font_icons color-icon ] [ position-icon ]">
 								<a href="{{ $handle }}" target="_blank" rel="noopener noreferrer">
 									&#xe0ba;
 								</a>
 							</span>
-						{{ end }}
-						{{ with provider.medium }}
+            )}
+						{provider.medium && (
+
 							{{ $handle := trim . "@" }}
 							<span className="[ color-icon ] [ position-icon ]">
 								<a href="https://{{ $handle }}.medium.com" target="_blank" rel="noopener noreferrer" className="svg-color">
 									<svg viewBox="0 0 1043.63 592.71" className="bu bk"><g data-name="Layer 2"><g data-name="Layer 1"><path d="M588.67 296.36c0 163.67-131.78 296.35-294.33 296.35S0 460 0 296.36 131.78 0 294.34 0s294.33 132.69 294.33 296.36M911.56 296.36c0 154.06-65.89 279-147.17 279s-147.17-124.94-147.17-279 65.88-279 147.16-279 147.17 124.9 147.17 279M1043.63 296.36c0 138-23.17 249.94-51.76 249.94s-51.75-111.91-51.75-249.94 23.17-249.94 51.75-249.94 51.76 111.9 51.76 249.94"></path></g></g></svg>
 								</a>
 							</span>
-						{{ end }}
-					</span>
-				</div>
-				{{ with .location.hours_of_operation }}
+            )}
+					</span> */}
+              </div>
+
+              {/* {{ with .location.hours_of_operation }}
 					<div className="display-flex">
 						<span
 							className="[ font_icons color-icon ] [ position-icon ] icon_clock"
