@@ -1,3 +1,4 @@
+import { SearchBar } from "./SearchBar";
 import { SearchResultCard } from "./SearchResultCard";
 
 export const MainBody = ({ allMHDdata }) => {
@@ -12,7 +13,7 @@ export const MainBody = ({ allMHDdata }) => {
         Clear all filters
       </div>
       <div className="[ display-none sm:display-block ]">
-        {/* {{ partial "search.html" . }} */}
+        <SearchBar />
       </div>
       <div
         id="map"

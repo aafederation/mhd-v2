@@ -1,6 +1,7 @@
 import { Layout } from "../components/Layout";
 import { MainBody } from "../components/MainBody";
 import { getSortedData } from "../lib/getData";
+import { SearchBar } from "../components/SearchBar";
 
 export async function getStaticProps() {
   const allMHDdata = getSortedData("MHD");
@@ -39,7 +40,7 @@ export default function Home({ allMHDdata }) {
         data-variant="no-padding"
       >
         <div className="[ display-block sm:display-none width-100 ]">
-          {/* {{ partial "search.html" . }} */}
+          <SearchBar />
         </div>
         <div
           className="[ main-filter-col fixed-scrollable ] [ top-500 right-500 bottom-800 left-500 z-2 ]"
