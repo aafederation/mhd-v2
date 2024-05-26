@@ -1,25 +1,16 @@
 import { FilterData } from "./FilterData";
-// import { getAllDataParameters } from "../lib/getData";
 
-// export async function getStaticProps() {
-//   const allDataParameters = getAllDataParameters("data");
-
-//   return {
-//     props: {
-//       allDataParameters,
-//     },
-//   };
-// }
-
-export const MainFilter = () => {
+export const MainFilter = ({ allDataParameters }) => {
   return (
     <>
       <h2 className="[ display-none sm:display-block gap-bottom-300 ]">
         Filters
       </h2>
-      <FilterData title="clinical service" />
+      <FilterData
+        title="clinical service"
+        allContent={allDataParameters["mental-health-services"]}
+      />
       {/* 
-        {{ partial "filter-data.html" (dict "title" "clinical service" "filter" "service" "allContent" $clinical_services ) }}
         {{ partial "filter-data.html" (dict "title" "psychotherapy specialty" "filter" "specialty" "allContent" $psychotherapy_specialties ) }}
         {{ partial "filter-data.html" (dict "title" "psychotherapy type"  "filter" "type" "allContent" $psychotherapy_types ) }}
         {{ partial "filter-data.html" (dict "title" "non-clinical service" "filter" "nonClinicalService" "allContent" $non_clinical_services ) }}

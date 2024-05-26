@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { Layout } from "../components/Layout";
 import { MainBody } from "../components/MainBody";
-import { getSortedData } from "../lib/getData";
+import { getSortedData, getAllDataParameters } from "../lib/getData";
 import { SearchBar } from "../components/SearchBar";
 import { MainFilter } from "../components/MainFilter";
 
 export async function getStaticProps() {
   const allMHDdata = getSortedData("MHD");
+  const allDataParameters = getAllDataParameters("data");
 
   return {
     props: {
       allMHDdata,
+      allDataParameters,
     },
   };
 }
 
-export default function Home({ allMHDdata }) {
+export default function Home({ allMHDdata, allDataParameters }) {
   const incrNbr = 6;
   const [filteredMHdata, setFilteredMHdata] = useState(allMHDdata);
   const [nbrToShow, setNbrToShow] = useState(
@@ -65,7 +67,7 @@ export default function Home({ allMHDdata }) {
           className="[ main-filter-col fixed-scrollable ] [ top-500 right-500 bottom-800 left-500 z-2 ]"
           id="main-filter"
         >
-          <MainFilter />
+          <MainFilter allDataParameters={allDataParameters} />
         </div>
         <div className="main-body-col">
           <MainBody

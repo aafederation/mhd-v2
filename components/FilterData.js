@@ -3,7 +3,7 @@ import { toggleFilter } from "../lib/utilities";
 // {{ $title := .title }}
 // {{ $selectAll := print `selectAll` $filter }}
 
-export const FilterData = ({ title }) => {
+export const FilterData = ({ title, allContent }) => {
   const titles = title + "s";
   return (
     <>
@@ -17,33 +17,34 @@ export const FilterData = ({ title }) => {
       </button>
       <ul className="panel">
         <li>
-          <button id="{{ $selectAll }}" onClick="htf.showAll({{ $filter }})">
+          <button
+            id="{{ $selectAll }}"
+            // onClick="htf.showAll({{ $filter }})"
+          >
             All {titles}
           </button>
         </li>
-        {/* {{ range .allContent }}
-		{{ if . }}
-			{{ $termURLize := . | replaceRE "[.]" "_" | urlize }}
-			<li>
-				<button
-					className="{{ $filter }}-button"
-					id="{{ $filter }}-{{ $termURLize }}"
-					onClick="htf.checkFilter('{{ $termURLize }}', '{{ $filter }}-')"
-				>
-					<span className="filter-item">
-						<span>{{ . | title }}</span>
-						<span id="s{{ $filter }}-{{ $termURLize }}">-count-</span> |
-						<span id="c{{ $filter }}-{{ $termURLize }}">-count-</span>
-					</span>
-				</button>
-			</li>
-		{{ end }}
-	{{ end }} */}
+        {allContent.map((content, i) => (
+          // {{ $termURLize := . | replaceRE "[.]" "_" | urlize }}
+          <li key={i}>
+            <button
+            // className="{{ $filter }}-button"
+            // id="{{ $filter }}-{{ $termURLize }}"
+            // onClick="htf.checkFilter('{{ $termURLize }}', '{{ $filter }}-')"
+            >
+              <span className="filter-item">
+                <span>{content}</span>
+                <span id="s{{ $filter }}-{{ $termURLize }}">-count-</span> |
+                <span id="c{{ $filter }}-{{ $termURLize }}">-count-</span>
+              </span>
+            </button>
+          </li>
+        ))}
         <li>
           <button
             className="{{ $filter }}-button"
             id="{{ $filter }}-no-{{ $filter }}"
-            onClick="htf.checkFilter('no-{{ $filter }}', '{{ $filter }}-')"
+            // onClick="htf.checkFilter('no-{{ $filter }}', '{{ $filter }}-')"
           >
             No {titles}
             <span id="s{{ $filter }}-no-{{ $filter }}">-count-</span> |
