@@ -1,4 +1,15 @@
 import { FilterData } from "./FilterData";
+// import { getAllDataParameters } from "../lib/getData";
+
+// export async function getStaticProps() {
+//   const allDataParameters = getAllDataParameters("data");
+
+//   return {
+//     props: {
+//       allDataParameters,
+//     },
+//   };
+// }
 
 export const MainFilter = () => {
   return (
@@ -22,3 +33,36 @@ export const MainFilter = () => {
     </>
   );
 };
+
+// {{ $pages := .Site.RegularPages }}
+// {{ $paymentTitles := slice }}
+// {{ $tagTitles := slice }}
+// <!--DATA SOURCES-->
+// {{ $locations := $.Site.Data.Boroughs }}
+// {{ $clinical_services := sort (index $.Site.Data "Mental health services").Items }}
+// {{ $non_clinical_services := sort (index $.Site.Data "Non clinical services").Items }}
+// {{ $staff_gender := sort (index $.Site.Data "Staff gender").Items }}
+// {{ $client_age := sort (index $.Site.Data "Age groups").Items }}
+// {{ $psychotherapy_specialties := sort (index $.Site.Data "Psychotherapy specialties").Items }}
+// {{ $psychotherapy_types := sort (index $.Site.Data "Psychotherapy types").Items }}
+// {{ $languages := sort $.Site.Data.Languages.Items }}
+// <!--TAXONOMY COUNTS-->
+// {{ $tags := $.Site.Taxonomies.tags.Alphabetical }}
+// {{ range sort .Site.Taxonomies.tags ".Page.Params.title" "asc" }}
+//   {{ $tagTitles = append .Page.Params.title $tagTitles }}
+// {{ end }}
+// {{ $payments := $.Site.Taxonomies.payment_types.Alphabetical }}
+// {{ range sort .Site.Taxonomies.payment_types ".Page.Params.title" "asc" }}
+//   {{ $paymentTitles = append .Page.Params.title $paymentTitles }}
+// {{ end }}
+// <!--TAXONOMY NO COUNT VAR-->
+// {{ $.Scratch.Set "untagged" 0 }}
+// {{ $.Scratch.Set "noPayments" 0 }}
+
+// <!--TAXONOMY NO COUNT COUNTING-->
+// {{ range $pages }}
+// 	{{ with .Params.tags }}{{ else }}{{ $.Scratch.Add "untagged" 1 }}{{ end }}
+// 	{{ with .Params.payment_types }}
+// 		{{ else }}{{ $.Scratch.Add "noPayments" 1 }}{{ end }}
+
+// {{ end }}
