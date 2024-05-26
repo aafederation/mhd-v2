@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { SearchBar } from "./SearchBar";
 import { SearchResultCard } from "./SearchResultCard";
 
 export const MainBody = ({ allMHDdata }) => {
+  const [filteredMHdata, setFilteredMHdata] = useState(allMHDdata);
   return (
     <>
       <div className="[ filter-refine-pills ] [ display-none sm:display-block ] [ text-rtl gap-right-500 gap-top-300 gap-bottom-300 line-height-700 z-1 ]"></div>
@@ -13,7 +15,10 @@ export const MainBody = ({ allMHDdata }) => {
         Clear all filters
       </div>
       <div className="[ display-none sm:display-block ]">
-        <SearchBar />
+        <SearchBar
+          setFilteredMHdata={setFilteredMHdata}
+          allMHDdata={allMHDdata}
+        />
       </div>
       <div
         id="map"
@@ -23,7 +28,7 @@ export const MainBody = ({ allMHDdata }) => {
         <i>Search results displayed in alphabetical order</i>
       </div>
       <div className="mhd-tiles" id="mhd-tiles-search-result">
-        {allMHDdata
+        {filteredMHdata
           .filter((provider) => provider.locations)
           .map((provider) =>
             provider.locations.map((location) => (
