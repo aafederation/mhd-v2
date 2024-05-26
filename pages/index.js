@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Layout } from "../components/Layout";
 import { MainBody } from "../components/MainBody";
 import { getSortedData } from "../lib/getData";
@@ -14,6 +15,19 @@ export async function getStaticProps() {
 }
 
 export default function Home({ allMHDdata }) {
+  const incrNbr = 6;
+  const [filteredMHdata, setFilteredMHdata] = useState(allMHDdata);
+  const [nbrToShow, setNbrToShow] = useState(
+    allMHDdata.length < incrNbr ? allMHDdata.length : incrNbr
+  );
+
+  function showMore() {
+    setNbrToShow(nbrToShow + incrNbr);
+  }
+  function resetNbrToShow() {
+    setNbrToShow(incrNbr);
+  }
+
   return (
     <Layout>
       <div className="[  index-blurb flow ] [ gap-top-300 pad-top-900 pad-right-500 pad-bottom-900 pad-left-500 bg-canvas ]">
@@ -40,7 +54,11 @@ export default function Home({ allMHDdata }) {
         data-variant="no-padding"
       >
         <div className="[ display-block sm:display-none width-100 ]">
-          <SearchBar />
+          <SearchBar
+            allMHDdata={allMHDdata}
+            setFilteredMHdata={setFilteredMHdata}
+            resetNbrToShow={resetNbrToShow}
+          />
         </div>
         <div
           className="[ main-filter-col fixed-scrollable ] [ top-500 right-500 bottom-800 left-500 z-2 ]"
@@ -49,7 +67,14 @@ export default function Home({ allMHDdata }) {
           {/* {{ partial "main-filter.html" . }} */}
         </div>
         <div className="main-body-col">
-          <MainBody allMHDdata={allMHDdata} />
+          <MainBody
+            allMHDdata={allMHDdata}
+            filteredMHdata={filteredMHdata}
+            setFilteredMHdata={setFilteredMHdata}
+            nbrToShow={nbrToShow}
+            showMore={showMore}
+            resetNbrToShow={resetNbrToShow}
+          />
         </div>
       </div>
       <div className="[  index-blurb flow ] [ pad-top-900 pad-right-500 pad-bottom-900 pad-left-500 bg-canvas ]">

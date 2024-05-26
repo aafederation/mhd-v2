@@ -2,19 +2,14 @@ import { useState } from "react";
 import { SearchBar } from "./SearchBar";
 import { SearchResultCard } from "./SearchResultCard";
 
-export const MainBody = ({ allMHDdata }) => {
-  const [filteredMHdata, setFilteredMHdata] = useState(allMHDdata);
-  const incrNbr = 6;
-  const [nbrToShow, setNbrToShow] = useState(
-    allMHDdata.length < incrNbr ? allMHDdata.length : incrNbr
-  );
-  function showMore() {
-    setNbrToShow(nbrToShow + incrNbr);
-  }
-  function resetNbrToShow() {
-    setNbrToShow(incrNbr);
-  }
-
+export const MainBody = ({
+  allMHDdata,
+  filteredMHdata,
+  setFilteredMHdata,
+  showMore,
+  resetNbrToShow,
+  nbrToShow,
+}) => {
   return (
     <>
       <div className="[ filter-refine-pills ] [ display-none sm:display-block ] [ text-rtl gap-right-500 gap-top-300 gap-bottom-300 line-height-700 z-1 ]"></div>
@@ -27,8 +22,8 @@ export const MainBody = ({ allMHDdata }) => {
       </div>
       <div className="[ display-none sm:display-block ]">
         <SearchBar
-          setFilteredMHdata={setFilteredMHdata}
           allMHDdata={allMHDdata}
+          setFilteredMHdata={setFilteredMHdata}
           resetNbrToShow={resetNbrToShow}
         />
       </div>
