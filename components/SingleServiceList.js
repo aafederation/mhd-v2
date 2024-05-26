@@ -1,6 +1,6 @@
 export const SingleServiceList = ({ title, items }) => {
   return (
-    <div class="column-item-avoid-break">
+    <div className="column-item-avoid-break">
       <h4>{title.toUpperCase()}</h4>
       <ul>
         {typeof items === "boolean" ? (
