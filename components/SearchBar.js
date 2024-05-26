@@ -1,4 +1,8 @@
-export const SearchBar = ({ setFilteredMHdata, allMHDdata }) => {
+export const SearchBar = ({
+  setFilteredMHdata,
+  allMHDdata,
+  resetNbrToShow,
+}) => {
   function handleSearch(e) {
     const search = e.target.value.toLowerCase();
     setFilteredMHdata(() =>
@@ -6,6 +10,7 @@ export const SearchBar = ({ setFilteredMHdata, allMHDdata }) => {
         provider.org.toLowerCase().includes(search)
       )
     );
+    resetNbrToShow();
   }
   return (
     <div className="pad-bottom-300 pad-top-300 gap-right-500 gap-left-500 bg-secondary book-search-outer">

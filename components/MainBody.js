@@ -4,6 +4,17 @@ import { SearchResultCard } from "./SearchResultCard";
 
 export const MainBody = ({ allMHDdata }) => {
   const [filteredMHdata, setFilteredMHdata] = useState(allMHDdata);
+  const incrNbr = 6;
+  const [nbrToShow, setNbrToShow] = useState(
+    allMHDdata.length < incrNbr ? allMHDdata.length : incrNbr
+  );
+  function showMore() {
+    setNbrToShow(nbrToShow + incrNbr);
+  }
+  function resetNbrToShow() {
+    setNbrToShow(incrNbr);
+  }
+
   return (
     <>
       <div className="[ filter-refine-pills ] [ display-none sm:display-block ] [ text-rtl gap-right-500 gap-top-300 gap-bottom-300 line-height-700 z-1 ]"></div>
@@ -18,6 +29,7 @@ export const MainBody = ({ allMHDdata }) => {
         <SearchBar
           setFilteredMHdata={setFilteredMHdata}
           allMHDdata={allMHDdata}
+          resetNbrToShow={resetNbrToShow}
         />
       </div>
       <div
@@ -29,6 +41,7 @@ export const MainBody = ({ allMHDdata }) => {
       </div>
       <div className="mhd-tiles" id="mhd-tiles-search-result">
         {filteredMHdata
+          .slice(0, nbrToShow)
           .filter((provider) => provider.locations)
           .map((provider) =>
             provider.locations.map((location) => (
@@ -41,14 +54,11 @@ export const MainBody = ({ allMHDdata }) => {
           )}
       </div>
       <div className="center-content gap-bottom-major">
-        <button
-          //TODO: class:hide-show-more-button, only show when more available
-          className="button"
-          id="show-more-button"
-          // onclick="htf.showMoreResults()"
-        >
-          Show more results
-        </button>
+        {filteredMHdata.length > nbrToShow && (
+          <button className="button" id="show-more-button" onClick={showMore}>
+            Show more results
+          </button>
+        )}
       </div>
     </>
   );
