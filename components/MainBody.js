@@ -23,7 +23,7 @@ export const MainBody = ({ allMHDdata }) => {
       </div>
       <div className="mhd-tiles" id="mhd-tiles-search-result">
         {allMHDdata
-          .slice(0, 4)
+          .filter((provider) => provider.locations)
           .map((provider) =>
             provider.locations.map((location) => (
               <SearchResultCard
