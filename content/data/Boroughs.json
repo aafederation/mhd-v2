@@ -1,14 +1,17 @@
-[
-  "Confidential Location",
-  "Online",
-  "Bronx",
-  "Brooklyn",
-  "Manhattan",
-  "Queens",
-  "Staten Island",
-  "Long Island",
-  "Syracuse",
-  "Buffalo",
-  "Rochester",
-  "Westchester"
-]
+{
+  "Items": [
+    "Confidential Location",
+    "Online",
+    "Bronx",
+    "Brooklyn",
+    "Manhattan",
+    "Queens",
+    "Staten Island",
+    "Long Island",
+    "Syracuse",
+    "Buffalo",
+    "Rochester",
+    "Westchester"
+  ],
+  "_template": "data_file"
+}
