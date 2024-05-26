@@ -1,0 +1,13 @@
+{
+  "Items": [
+    "Female",
+    "Male",
+    "Genderqueer",
+    "Gender-neutral",
+    "Gender nonconforming",
+    "Nonbinary",
+    "Transgender",
+    "Other"
+  ],
+  "_template": "data_file"
+}
