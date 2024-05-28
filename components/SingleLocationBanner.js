@@ -81,12 +81,12 @@ export const SingleLocationBanner = ({ provider, location }) => {
                 Location
               </h4>
               <iframe
-                frameborder="0"
+                frameBorder="0"
                 width="100%"
                 height="300px"
                 style={{ border: "0" }}
                 src={mapSrc}
-                allowfullscreen
+                allowFullScreen
               ></iframe>
               {showPlace && (
                 <div className="pad-left-300 pad-right-300 pad-top-300 pad-bottom-300">
