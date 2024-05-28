@@ -5,6 +5,12 @@ import { toggleFilter } from "../lib/utilities";
 
 export const FilterData = ({ title, allContent }) => {
   const titles = title + "s";
+  function applyFilter(el) {
+    el = el.target;
+    el.classList.toggle("active");
+
+    console.dir(el);
+  }
   return (
     <>
       <button
@@ -28,9 +34,10 @@ export const FilterData = ({ title, allContent }) => {
           // {{ $termURLize := . | replaceRE "[.]" "_" | urlize }}
           <li key={i}>
             <button
-            // className="{{ $filter }}-button"
-            // id="{{ $filter }}-{{ $termURLize }}"
-            // onClick="htf.checkFilter('{{ $termURLize }}', '{{ $filter }}-')"
+              // className="{{ $filter }}-button"
+              // id="{{ $filter }}-{{ $termURLize }}"
+              // onClick="htf.checkFilter('{{ $termURLize }}', '{{ $filter }}-')"
+              onClick={applyFilter}
             >
               <span className="filter-item">
                 <span>{content}</span>

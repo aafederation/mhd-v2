@@ -35,18 +35,13 @@ export const MainBody = ({
         <i>Search results displayed in alphabetical order</i>
       </div>
       <div className="mhd-tiles" id="mhd-tiles-search-result">
-        {filteredMHdata
-          .slice(0, nbrToShow)
-          .filter((provider) => provider.locations)
-          .map((provider) =>
-            provider.locations.map((location) => (
-              <SearchResultCard
-                mentalHealthProvider={provider}
-                location={location}
-                key={location.address}
-              />
-            ))
-          )}
+        {filteredMHdata.slice(0, nbrToShow).map((provider) => (
+          <SearchResultCard
+            mentalHealthProvider={provider}
+            location={provider.location}
+            key={provider.location.address}
+          />
+        ))}
       </div>
       <div className="center-content gap-bottom-major">
         {filteredMHdata.length > nbrToShow && (
