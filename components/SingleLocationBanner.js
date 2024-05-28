@@ -258,8 +258,8 @@ export const SingleLocationBanner = ({ provider, location }) => {
                     &#xe06b;
                   </span>
                   <div className="no-bullets">
-                    {location.hours_of_operation.map((x) => (
-                      <li>{x.day_hours}</li>
+                    {location.hours_of_operation.map((x, i) => (
+                      <li key={i}>{x.day_hours}</li>
                     ))}
                   </div>
                 </div>
