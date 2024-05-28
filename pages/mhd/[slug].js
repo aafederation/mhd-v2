@@ -1,6 +1,9 @@
-import { Layout } from "../components/Layout";
-import { SingleProvider } from "../components/SingleProvider";
-import { getAllProviderIds, getSingleProviderFromSlug } from "../lib/getData";
+import { Layout } from "../../components/Layout";
+import { SingleProvider } from "../../components/SingleProvider";
+import {
+  getAllProviderIds,
+  getSingleProviderFromSlug,
+} from "../../lib/getData";
 
 const memberType = "MHD";
 
