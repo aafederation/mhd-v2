@@ -11,7 +11,10 @@ export const SingleLocationBanner = ({ provider, location }) => {
   const trimA = (str) =>
     str[0] === "@" ? str.substring(1).trim() : str.trim();
 
-  if (provider.tags.some((x) => x.toLowerCase().includes("individual"))) {
+  if (
+    provider.tags &&
+    provider.tags.some((x) => x.toLowerCase().includes("individual"))
+  ) {
     bgType = "bg-individual";
     colorTypeInvert = "color-individual-invert";
     individual = true;
@@ -119,9 +122,12 @@ export const SingleLocationBanner = ({ provider, location }) => {
                   </span>
                   <span>
                     {location.phone_number}
-                    {provider.best_way_to_contact.includes("Phone") && (
-                      <h5 className="inline-display">(best way to contact)</h5>
-                    )}
+                    {provider.best_way_to_contact &&
+                      provider.best_way_to_contact.includes("Phone") && (
+                        <h5 className="inline-display">
+                          (best way to contact)
+                        </h5>
+                      )}
                   </span>
                 </div>
               )}
@@ -139,11 +145,12 @@ export const SingleLocationBanner = ({ provider, location }) => {
                   >
                     {provider.email}
                   </a>
-                  {provider.best_way_to_contact.includes("Email") && (
-                    <h5 className="inline-display" data-variant="link">
-                      (best way to contact)
-                    </h5>
-                  )}
+                  {provider.best_way_to_contact &&
+                    provider.best_way_to_contact.includes("Email") && (
+                      <h5 className="inline-display" data-variant="link">
+                        (best way to contact)
+                      </h5>
+                    )}
                 </div>
               )}
 
@@ -160,11 +167,12 @@ export const SingleLocationBanner = ({ provider, location }) => {
                   >
                     {provider.website}
                   </a>
-                  {provider.best_way_to_contact.includes("Website") && (
-                    <h5 className="inline-display" data-variant="link">
-                      (best way to contact)
-                    </h5>
-                  )}
+                  {provider.best_way_to_contact &&
+                    provider.best_way_to_contact.includes("Website") && (
+                      <h5 className="inline-display" data-variant="link">
+                        (best way to contact)
+                      </h5>
+                    )}
                 </div>
               )}
               <div className="display-flex flex-wrap-wrap">
@@ -252,20 +260,21 @@ export const SingleLocationBanner = ({ provider, location }) => {
                 </span>
               </div>
 
-              {location.hours_of_operation.length > 0 && (
-                <div className="display-flex">
-                  <span className="[ font_icons color-icon ] [ position-icon ] icon_clock">
-                    &#xe06b;
-                  </span>
-                  <div className="no-bullets">
-                    {location.hours_of_operation.map((x, i) => (
-                      <li key={i}>{x.day_hours}</li>
-                    ))}
+              {location.hours_of_operation &&
+                location.hours_of_operation.length > 0 && (
+                  <div className="display-flex">
+                    <span className="[ font_icons color-icon ] [ position-icon ] icon_clock">
+                      &#xe06b;
+                    </span>
+                    <div className="no-bullets">
+                      {location.hours_of_operation.map((x, i) => (
+                        <li key={i}>{x.day_hours}</li>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {location.services.length > 0 && (
+              {location.services && location.services.length > 0 && (
                 <div className="display-flex">
                   <span className="[ font_icons color-icon ] [ position-icon ]">
                     &#x4e;
@@ -277,17 +286,20 @@ export const SingleLocationBanner = ({ provider, location }) => {
                 </div>
               )}
 
-              {location.non_clinical_services.length > 0 && (
-                <div className="display-flex">
-                  <span className="[ font_icons color-icon ] [ position-icon ]">
-                    &#x4e;
-                  </span>
-                  <div>
-                    <span className="weight-bold">Non-clinical services: </span>
-                    <span>{location.non_clinical_services.join()}</span>
+              {location.non_clinical_services &&
+                location.non_clinical_services.length > 0 && (
+                  <div className="display-flex">
+                    <span className="[ font_icons color-icon ] [ position-icon ]">
+                      &#x4e;
+                    </span>
+                    <div>
+                      <span className="weight-bold">
+                        Non-clinical services:{" "}
+                      </span>
+                      <span>{location.non_clinical_services.join()}</span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               {provider.content && (
                 <div className="display-flex">
                   <span className="[ font_icons color-icon ] [ position-icon ]">

@@ -8,13 +8,14 @@ export const SingleProvider = ({ provider }) => {
     >
       {/* {{ $org := .Params }}
 		{{ $content := .Content }} */}
-      {provider.locations.map((location) => (
-        <SingleProviderLocation
-          provider={provider}
-          location={location}
-          key={location.address}
-        />
-      ))}
+      {provider.locations &&
+        provider.locations.map((location) => (
+          <SingleProviderLocation
+            provider={provider}
+            location={location}
+            key={location.address}
+          />
+        ))}
     </div>
     // <script>
     // 	(function () {
