@@ -56,7 +56,7 @@ export const SingleProviderLocation = ({ provider, location }) => {
           {location.non_clinical_services.length > 0 && (
             <SingleServiceList
               title="NON-CLINICAL SERVICES"
-              items={location.non_clinical_services}
+              items={location.non_clinical_services.sort()}
             />
           )}
           {provider.payment_types_non_clinical.length > 0 && (

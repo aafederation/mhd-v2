@@ -19,7 +19,7 @@ export const SingleServiceList = ({ title, items }) => {
           )
         ) : Array.isArray(items) ? (
           items.length > 0 ? (
-            items.sort().map((x) => <li>{x}</li>)
+            items.map((x, i) => <li key={i}>{x}</li>)
           ) : (
             <li>No data available</li>
           )
