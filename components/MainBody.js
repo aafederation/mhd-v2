@@ -39,7 +39,7 @@ export const MainBody = ({
           <SearchResultCard
             mentalHealthProvider={provider}
             location={provider.location}
-            key={provider.location.address}
+            key={provider.org + provider.location.address}
           />
         ))}
       </div>
