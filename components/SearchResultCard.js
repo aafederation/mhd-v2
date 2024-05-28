@@ -39,7 +39,7 @@ export const SearchResultCard = ({ mentalHealthProvider, location }) => {
           </div>
           <h4>
             <a
-              href={`/${mentalHealthProvider.id}`}
+              href={`/mhd/${mentalHealthProvider.id}`}
               className="link-pointer-basic"
               target="_blank"
             >
