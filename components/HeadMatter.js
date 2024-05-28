@@ -46,8 +46,6 @@ export const HeadMatter = () => {
       />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
-      <link rel="stylesheet" href="/css/global.css" />
-      <link rel="stylesheet" href="/fonts/fonts.css" />
       <title>AAF Mental Health Directory</title>
       <link
         rel="shortcut icon"
