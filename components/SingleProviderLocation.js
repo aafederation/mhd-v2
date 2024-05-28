@@ -11,7 +11,7 @@ export const SingleProviderLocation = ({ provider, location }) => {
           {location.credentials.length > 0 && (
             <SingleServiceList
               title="Credentials"
-              items={location.credentials}
+              items={location.credentials.sort()}
             />
           )}
           {location.trainings && (
@@ -20,25 +20,25 @@ export const SingleProviderLocation = ({ provider, location }) => {
           {location.services.length > 0 && (
             <SingleServiceList
               title="Clinical Services"
-              items={location.services}
+              items={location.services.sort()}
             />
           )}
-          {location.psychotherapy > 0 && (
+          {location.psychotherapy && (
             <>
               <SingleServiceList
                 title="PSYCHOTHERAPY SPECIALTIES"
-                items={location.psychotherapy_specialties}
+                items={location.psychotherapy_specialties.sort()}
               />
               <SingleServiceList
                 title="PSYCHOTHERAPY TYPES"
-                items={location.psychotherapy_types}
+                items={location.psychotherapy_types.sort()}
               />
             </>
           )}
           {provider.payment_types.length > 0 && (
             <SingleServiceList
               title="PAYMENT TYPES (CLINICAL)"
-              items={provider.payment_types}
+              items={provider.payment_types.sort()}
             />
           )}
           {provider.payment_info_clinical && (
@@ -62,7 +62,7 @@ export const SingleProviderLocation = ({ provider, location }) => {
           {provider.payment_types_non_clinical.length > 0 && (
             <SingleServiceList
               title="PAYMENT TYPES (NON-CLINICAL)"
-              items={provider.payment_types_non_clinical}
+              items={provider.payment_types_non_clinical.sort()}
             />
           )}
           {provider.payment_info_non_clinical && (
@@ -113,7 +113,10 @@ export const SingleProviderLocation = ({ provider, location }) => {
             />
           )}
           {location.languages.length > 0 && (
-            <SingleServiceList title="LANGUAGES" items={location.languages} />
+            <SingleServiceList
+              title="LANGUAGES"
+              items={location.languages.sort()}
+            />
           )}
           {location.staff_gender.length > 0 && (
             <SingleServiceList
