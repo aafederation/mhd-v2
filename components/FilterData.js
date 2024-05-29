@@ -5,24 +5,35 @@ import { toggleFilter } from "../lib/utilities";
 // {{ $selectAll := print `selectAll` $filter }}
 
 export const FilterData = ({ title, allContent }) => {
-  const [filters, setFilters] = useState([]);
-  const [showAll, setShowAll] = useState("active");
   const titles = title + "s";
+  const active = "active";
+
+  const [filters, setFilters] = useState({});
+  const [showAll, setShowAll] = useState(active);
 
   useEffect(() => {
-    console.log(filters);
-    if (filters.length === 0) setShowAll("active");
+    if (Object.keys(filters).length === 0) setShowAll(active);
   }, [filters]);
 
   function applyFilter(el, content) {
     el.stopPropagation();
     el = el.currentTarget;
-    if (el.classList.contains("active")) {
-      el.classList.remove("active");
-      setFilters(filters.filter((x) => x !== content));
+    if (content === title) {
+      Object.keys(filters).forEach((filterID) =>
+        filters[filterID].classList.remove(active)
+      );
+      setFilters({});
+      setShowAll(active);
     } else {
-      el.classList.add("active");
-      setFilters([...filters, content]);
+      if (el.classList.contains(active)) {
+        el.classList.remove(active);
+        let newFilters = { ...filters };
+        delete newFilters[content];
+        setFilters(newFilters);
+      } else {
+        el.classList.add(active);
+        setFilters({ ...filters, [content]: el });
+      }
       setShowAll("");
     }
   }
@@ -40,8 +51,8 @@ export const FilterData = ({ title, allContent }) => {
         <li>
           <button
             // id="{{ $selectAll }}"
-            className={showAll}
             onClickCapture={(e) => applyFilter(e, title)}
+            className={showAll}
           >
             All {titles}
           </button>
@@ -68,6 +79,7 @@ export const FilterData = ({ title, allContent }) => {
             className="{{ $filter }}-button"
             id="{{ $filter }}-no-{{ $filter }}"
             // onClick="htf.checkFilter('no-{{ $filter }}', '{{ $filter }}-')"
+            onClickCapture={(e) => applyFilter(e, `no-${title}`)}
           >
             No {titles}
             <span id="s{{ $filter }}-no-{{ $filter }}">-count-</span> |
