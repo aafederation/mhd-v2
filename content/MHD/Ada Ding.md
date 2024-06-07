@@ -5,9 +5,9 @@ highlight = false
 program = "ATD Therapy"
 website = "https://www.atdtherapy.com"
 email = "ada@atdtherapy.com"
-facebook = "@aafscny"
-twitter = "@aafscny"
-instagram = "@aafscny"
+facebook = ""
+twitter = ""
+instagram = ""
 linkedin = ""
 youtube = ""
 tiktok = ""
@@ -80,7 +80,10 @@ staff_gender = [ "Female" ]
 
 I am accepting new clients - individuals and couples! I am a first-gen Asian-American licensed therapist in New York and specialize in working with young adults experiencing anxiety, depression, life transitions, racial trauma, relationships issues, and eating disorders. I am also passionate about working with couples around issues involving communication, intimacy, and managing conflict. My approach with clients is warm, collaborative and relational. I have additional training in TF-CBT and DBT.
 
+
 Together, we will collaborate to define and work toward your goals, building a toolbox of skills to attain your full potential. You can expect to leave sessions feeling validated and empowered. I am here to offer unconditional support on your path to achieving emotional freedom.
+
 
 Sliding scale options available. In-person or Telehealth sessions available.
 Email if interested: ada\@atdtherapy.com
+
