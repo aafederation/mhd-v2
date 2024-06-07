@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "tinacms dev -c \"next dev -p 1313\"",
     "build": "tinacms build && next build",
+    "build-n": "next build",
     "start": "tinacms build && next start",
     "lint": "next lint"
   },
