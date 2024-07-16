@@ -90,10 +90,12 @@ export const SearchResultCard = ({ mentalHealthProvider, location }) => {
                 <span className="[ font_icons color-icon ] [ position-icon ]">
                   &#xe0e3;
                 </span>
-                <span className="website">
+                <span
+                  className="website link-pointer handle-long-url"
+                  data-variant="invert"
+                >
                   <a
-                    className="link-pointer handle-long-url"
-                    data-variant="invert"
+                    className="text-decoration-none"
                     href={
                       (!mentalHealthProvider.website
                         .toLowerCase()

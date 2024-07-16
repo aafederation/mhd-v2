@@ -168,6 +168,16 @@ $gorko-config: (
 		"output": "standard",
 		"property": "opacity",
 	),
+	"text-decoration": (
+		"items": (
+			"none": "none",
+			"underline": "underline",
+			"overline": "overline",
+			"line-through": "line-through",
+		),
+		"output": "standard",
+		"property": "text-decoration",
+	),
 	"breakpoints": (
 		"sm": "(min-width: 38em)",
 		"md": "(min-width: 48em)",
